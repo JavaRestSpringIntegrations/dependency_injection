@@ -3,7 +3,12 @@ package academy.learnprogramming;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+import javax.annotation.PostConstruct;
+
+@Component
 public class GameImpl implements Game {
 
     // == constants ==
@@ -12,7 +17,11 @@ public class GameImpl implements Game {
     // == fields ==
     @Autowired
     private NumberGenerator numberGenerator;
-    private int guessCount = 10;
+
+    @Autowired
+    //@GuessCount
+    private int guessCount;
+
     private int number;
     private int guess;
     private int smallest;
@@ -31,14 +40,14 @@ public class GameImpl implements Game {
         this.numberGenerator = numberGenerator;
     }
 */
-
+    @PostConstruct
     @Override
     public void reset() {
         smallest = 0;
         guess = 0;
         remainingGuesses = guessCount;
-        biggest = numberGenerator.getMaxNumber();
         number = numberGenerator.next();
+        biggest = numberGenerator.getMaxNumber();
         log.debug("the number is {}", number);
     }
 

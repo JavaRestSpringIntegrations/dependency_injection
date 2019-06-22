@@ -7,17 +7,21 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:annotation-config/>
-    <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorImpl"/>
+<!--    <context:annotation-config/> Used for auto wiring -->
+<!--        The below tag implicitly enables the functionality of component scan we commented above
+        and 'base-package' says to scan for annotated classes Tag #3-->
+        <context:component-scan base-package="academy.learnprogramming"/>
+
+<!--    <bean id="numberGenerator" class="academy.learnprogramming.NumberGeneratorImpl"/> Removed for Tag#3-->
 
     <!-- Constructor based Dependency Injection -->
-    <bean id="game" class="academy.learnprogramming.GameImpl" >
+<!--    <bean id="game" class="academy.learnprogramming.GameImpl" > Removed for Tag#3 -->
 <!--        <constructor-arg ref="numberGenerator"/> Tag #1-->
 <!--        Setter based injection use property name Tag#2
             name attribute value is the field of number class
             private NumberGenerator numberGenerator;
              will be commented/removed for autowiring -->
 <!--        <property name="numberGenerator" ref="numberGenerator"/>-->
-    </bean>
+<!--    </bean> Removed for Tag#3 -->
 
 </beans>
